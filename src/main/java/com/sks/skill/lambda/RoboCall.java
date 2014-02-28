@@ -2,10 +2,7 @@ package com.sks.skill.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-
-import com.sks.skill.basic.Common;
 
 /**
  * @author Sabith_ks
@@ -64,31 +61,7 @@ public class RoboCall {
 	 * Use Mapper to find out on what the action has to be taken
 	 * use Apply to call the required function call
 	 */
-	private  int processMatchingPerson( 
-			Iterable<Person> source,
-			String forWhat, 
-			Predicate<Person> pred, 
-			Block<PhoneNumber> block,
-			Mapper<Person, PhoneNumber> mapper) {
-		//The count of persons on which we have applied some logic
-		int returnInt	= 0;
-		//Iterate through the iterable of persons
-		for(Person person : source){
-
-			//Test the person for the interface , Filter
-			if(pred.testPerson(person)){
-
-				//Increment
-				returnInt++;
-
-				//Apply a block of code 
-				block.apply(mapper.map(person));
-			}
-		}
-		System.out.println("Number of persons are eligible for "+forWhat+ " : "+returnInt);
-		Common.createBreak();
-		return returnInt;
-	}
+	//private void processMatchingPerson(){}
 
 	/**
 	 * 
