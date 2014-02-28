@@ -49,16 +49,21 @@ public class RoboCall {
 	}
 
 	/**
-	 * @param forWhat
-	 * @param predicate
+	 * @param source : Source of the persons
+	 * @param forWhat : what is the purpose
+	 * @param pred
+	 * @param block
+	 * @param mapper
 	 * @return
 	 */
-	private static int processMatchingPerson(String forWhat, 
+	private static int processMatchingPerson( 
+			Iterable<Person> source,
+			String forWhat, 
 			Predicate<Person> pred, 
 			Block<PhoneNumber> block,
 			Mapper<Person, PhoneNumber> mapper) {
 		int returnInt	= 0;
-		for(Person person : listOfPerson){
+		for(Person person : source){
 			//Test the person for the interface
 			if(pred.testPerson(person)){
 				returnInt++;
@@ -75,7 +80,7 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrink(){
 		//For drinks : age > 22
-		processMatchingPerson("Drinking", (person) -> person.getAge()>22, 
+		processMatchingPerson(listOfPerson, "Drinking", (person) -> person.getAge()>22, 
 				(person) -> {
 					roboCall(person);
 				},
@@ -84,7 +89,7 @@ public class RoboCall {
 				}
 				);
 		//Text to mobile number
-		processMatchingPerson("Drinking", (person) -> person.getAge()>22, 
+		processMatchingPerson(listOfPerson, "Drinking", (person) -> person.getAge()>22, 
 				(person) -> {
 					roboText(person);
 				},
@@ -101,7 +106,7 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrive(){
 		//For driving : age> 18 and age < 49
-		processMatchingPerson("Driving", (person) -> person.getAge()>18 && person.getAge()<49,
+		processMatchingPerson(listOfPerson, "Driving", (person) -> person.getAge()>18 && person.getAge()<49,
 				(person) -> {
 					roboCall(person);
 				},
@@ -115,7 +120,7 @@ public class RoboCall {
 	 */
 	public static void isLiving(){
 		//For living : age>0
-		processMatchingPerson("Living", (person) -> person.getAge()>0,
+		processMatchingPerson(listOfPerson, "Living", (person) -> person.getAge()>0,
 				(person) -> {
 					roboCall(person);
 				},
@@ -129,7 +134,7 @@ public class RoboCall {
 	 */
 	public static void needNotGotoSchool(){
 		//For noSchool: age < 4 or age > 43
-		processMatchingPerson("Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43,
+		processMatchingPerson(listOfPerson, "Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43,
 				(person) -> {
 					roboCall(person);
 				},
@@ -140,7 +145,7 @@ public class RoboCall {
 
 	public static void canVote(){
 		//for vote : age > 21
-		processMatchingPerson("Voting", (person) -> person.getAge()>21,
+		processMatchingPerson(listOfPerson, "Voting", (person) -> person.getAge()>21,
 				(person) -> {
 					roboCall(person);
 				},
@@ -150,7 +155,7 @@ public class RoboCall {
 	}
 
 	public static void isEligibleForSelectiveService(){
-		processMatchingPerson("Selective Service ",  
+		processMatchingPerson(listOfPerson, "Selective Service ",  
 				(person) -> person.getAge()>=18 && person.getSex() == Sex.MALE && person.getAge()<= 25,
 				(person) -> {
 					roboCall(person);
