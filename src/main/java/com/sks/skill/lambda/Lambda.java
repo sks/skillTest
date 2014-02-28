@@ -14,8 +14,8 @@ import com.sks.skill.basic.Common;
 public class Lambda {
 
 	public static void main(String[] args){
-		Person sks	= new Person("sks", "sks@sks.com", 25);
-		Person stp	= new Person("stp", "stp@stp.com", 22);
+		Person sks	= new Person("sks", "sks@sks.com", 25, Sex.FEMALE);
+		Person stp	= new Person("stp", "stp@stp.com", 22, Sex.MALE);
 		
 		List<Person> shortListOfPerson	= Arrays.asList(sks, stp);
 		sortInOldWay(shortListOfPerson);

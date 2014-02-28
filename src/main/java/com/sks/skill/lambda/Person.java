@@ -7,12 +7,27 @@ public class Person {
 	private String email;
 	
 	private int age;
+	
+	private Sex sex;
 
-	public Person(String name, String email, int age) {
+	public Person(String name, String email, int age, Sex sex) {
 		this.name	= name;
 		this.email	= email;
 		this.age	= age;
+		this.sex	= sex;
 	}
+	
+	public Sex getSex() {
+		return sex;
+	}
+
+
+
+	public void setSex(Sex sex) {
+		this.sex = sex;
+	}
+
+
 
 	public String getName() {
 		return name;
