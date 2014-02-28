@@ -2,6 +2,7 @@ package com.sks.skill.lambda;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import com.sks.skill.basic.Common;
@@ -55,18 +56,32 @@ public class RoboCall {
 	 * @param block
 	 * @param mapper
 	 * @return
+	 * 
+	 * What this does
+	 * Source -> Filter -> Mapper -> Apply
+	 * Iterate through the source, 
+	 * Filter the resource
+	 * Use Mapper to find out on what the action has to be taken
+	 * use Apply to call the required function call
 	 */
-	private static int processMatchingPerson( 
+	private  int processMatchingPerson( 
 			Iterable<Person> source,
 			String forWhat, 
 			Predicate<Person> pred, 
 			Block<PhoneNumber> block,
 			Mapper<Person, PhoneNumber> mapper) {
+		//The count of persons on which we have applied some logic
 		int returnInt	= 0;
+		//Iterate through the iterable of persons
 		for(Person person : source){
-			//Test the person for the interface
+
+			//Test the person for the interface , Filter
 			if(pred.testPerson(person)){
+
+				//Increment
 				returnInt++;
+
+				//Apply a block of code 
 				block.apply(mapper.map(person));
 			}
 		}
@@ -80,25 +95,28 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrink(){
 		//For drinks : age > 22
-		processMatchingPerson(listOfPerson, "Drinking", (person) -> person.getAge()>22, 
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
-					return person.getHomeNumber();
-				}
-				);
+		listOfPerson
+		.stream()
+		.parallel()
+		.filter((person) -> person.getAge()>22)
+		.map((person) -> {
+			return person.getHomeNumber();
+		})
+		.forEach((person) -> {
+			roboCall(person);
+		});
+
 		//Text to mobile number
-		processMatchingPerson(listOfPerson, "Drinking", (person) -> person.getAge()>22, 
-				(person) -> {
-					roboText(person);
-				},
-				(person) -> {
-					return person.getMobileNumber();
-				}
-				);
-
-
+		listOfPerson
+		.stream()
+		.parallel()
+		.filter((person) -> person.getAge()>22)
+		.map((person) -> {
+			return person.getMobileNumber();
+		})
+		.forEach((person) -> {
+			roboText(person);
+		});
 	}
 
 	/**
@@ -106,13 +124,13 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrive(){
 		//For driving : age> 18 and age < 49
-		processMatchingPerson(listOfPerson, "Driving", (person) -> person.getAge()>18 && person.getAge()<49,
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
+		listOfPerson.stream().filter(
+				(person) -> person.getAge()>18 && person.getAge()<49
+				)
+				.map((person) -> {
 					return person.getMobileNumber();
-				});
+				})
+				.forEach((person) -> roboCall(person));
 	}
 
 	/**
@@ -120,13 +138,9 @@ public class RoboCall {
 	 */
 	public static void isLiving(){
 		//For living : age>0
-		processMatchingPerson(listOfPerson, "Living", (person) -> person.getAge()>0,
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
-					return person.getMobileNumber();
-				});
+		listOfPerson.stream().filter((person) -> person.getAge() > 0)
+		.map((person) -> {return person.getMobileNumber();})
+		.forEach((person) -> {roboCall(person);}); 
 	}
 
 	/**
@@ -134,34 +148,29 @@ public class RoboCall {
 	 */
 	public static void needNotGotoSchool(){
 		//For noSchool: age < 4 or age > 43
-		processMatchingPerson(listOfPerson, "Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43,
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
-					return person.getMobileNumber();
-				});
+		listOfPerson.stream().filter((person) -> person.getAge()<4 || person.getAge()>43)
+		.map((person) -> {return person.getMobileNumber();})
+		.forEach((person) -> {roboCall(person);}); 
 	}
 
+	/**
+	 * 
+	 */
 	public static void canVote(){
 		//for vote : age > 21
-		processMatchingPerson(listOfPerson, "Voting", (person) -> person.getAge()>21,
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
-					return person.getMobileNumber();
-				});
+		listOfPerson.stream()
+		.filter((person) -> person.getAge()>21)
+		.map((person) -> {return person.getMobileNumber();})
+		.forEach((person) -> {roboCall(person);});
 	}
 
+	/**
+	 * 
+	 */
 	public static void isEligibleForSelectiveService(){
-		processMatchingPerson(listOfPerson, "Selective Service ",  
-				(person) -> person.getAge()>=18 && person.getSex() == Sex.MALE && person.getAge()<= 25,
-				(person) -> {
-					roboCall(person);
-				},
-				(person) -> {
-					return person.getMobileNumber();
-				});
+		listOfPerson.stream()
+		.filter((person) -> person.getAge()>=18 && person.getSex() == Sex.MALE && person.getAge()<= 25)
+		.map((person) -> {return person.getMobileNumber();})
+		.forEach((person) -> {roboCall(person);});
 	}
 }
