@@ -9,12 +9,18 @@ public class Person {
 	private int age;
 	
 	private Sex sex;
+	
+	private PhoneNumber homeNumber;
+	
+	private PhoneNumber mobileNumber;
 
 	public Person(String name, String email, int age, Sex sex) {
 		this.name	= name;
 		this.email	= email;
 		this.age	= age;
 		this.sex	= sex;
+		this.mobileNumber	= new PhoneNumber(name+"_mobile");
+		this.homeNumber		= new PhoneNumber(name+"_home"); 
 	}
 	
 	public Sex getSex() {
@@ -53,10 +59,29 @@ public class Person {
 		this.age = age;
 	}
 
+	public PhoneNumber getHomeNumber() {
+		return homeNumber;
+	}
+
+	public void setHomeNumber(PhoneNumber homeNumber) {
+		this.homeNumber = homeNumber;
+	}
+
+	public PhoneNumber getMobileNumber() {
+		return mobileNumber;
+	}
+
+	public void setMobileNumber(PhoneNumber mobileNumber) {
+		this.mobileNumber = mobileNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "Person [name=" + name + ", email=" + email + ", age=" + age
-				+ "]";
+				+ ", sex=" + sex + ", homeNumber=" + homeNumber
+				+ ", mobileNumber=" + mobileNumber + "]";
 	}
+
+	
 	
 }

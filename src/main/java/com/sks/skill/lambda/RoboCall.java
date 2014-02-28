@@ -40,12 +40,12 @@ public class RoboCall {
 
 	}
 
-	private static void roboCall(Person person){
-		System.out.println("Called "+person);
+	private static void roboCall(PhoneNumber phoneNumber){
+		System.out.println("Called "+phoneNumber);
 	}
-	
-	private static void roboText(Person person){
-		System.out.println("Texted "+person);
+
+	private static void roboText(PhoneNumber phoneNumber){
+		System.out.println("Texted "+phoneNumber);
 	}
 
 	/**
@@ -53,13 +53,16 @@ public class RoboCall {
 	 * @param predicate
 	 * @return
 	 */
-	private static int processMatchingPerson(String forWhat, Predicate<Person> pred, Block<Person> block) {
+	private static int processMatchingPerson(String forWhat, 
+			Predicate<Person> pred, 
+			Block<PhoneNumber> block,
+			Mapper<Person, PhoneNumber> mapper) {
 		int returnInt	= 0;
 		for(Person person : listOfPerson){
 			//Test the person for the interface
 			if(pred.testPerson(person)){
 				returnInt++;
-				block.apply(person);
+				block.apply(mapper.map(person));
 			}
 		}
 		System.out.println("Number of persons are eligible for "+forWhat+ " : "+returnInt);
@@ -75,8 +78,20 @@ public class RoboCall {
 		processMatchingPerson("Drinking", (person) -> person.getAge()>22, 
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getHomeNumber();
+				}
+				);
+		//Text to mobile number
+		processMatchingPerson("Drinking", (person) -> person.getAge()>22, 
+				(person) -> {
 					roboText(person);
-				});
+				},
+				(person) -> {
+					return person.getMobileNumber();
+				}
+				);
 
 
 	}
@@ -89,6 +104,9 @@ public class RoboCall {
 		processMatchingPerson("Driving", (person) -> person.getAge()>18 && person.getAge()<49,
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getMobileNumber();
 				});
 	}
 
@@ -100,6 +118,9 @@ public class RoboCall {
 		processMatchingPerson("Living", (person) -> person.getAge()>0,
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getMobileNumber();
 				});
 	}
 
@@ -111,6 +132,9 @@ public class RoboCall {
 		processMatchingPerson("Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43,
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getMobileNumber();
 				});
 	}
 
@@ -119,6 +143,9 @@ public class RoboCall {
 		processMatchingPerson("Voting", (person) -> person.getAge()>21,
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getMobileNumber();
 				});
 	}
 
@@ -127,6 +154,9 @@ public class RoboCall {
 				(person) -> person.getAge()>=18 && person.getSex() == Sex.MALE && person.getAge()<= 25,
 				(person) -> {
 					roboCall(person);
+				},
+				(person) -> {
+					return person.getMobileNumber();
 				});
 	}
 }
