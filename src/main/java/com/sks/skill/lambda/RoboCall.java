@@ -4,10 +4,15 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.sks.skill.basic.Common;
+
 /**
  * @author Sabith_ks
- * testing functionality as per video https://www.youtube.com/watch?v=bzO5GSujdqI
- * parameterize behavior
+ * Testing functionality as per video https://www.youtube.com/watch?v=bzO5GSujdqI
+ * Parameterize behavior
+ * Compiler has to do the Type Inference while checking the lambda
+ * This is not dynamic typing (Java is still Statically typed language)
+ *  
  */
 public class RoboCall {
 
@@ -35,17 +40,31 @@ public class RoboCall {
 
 	}
 
-	private static int callMatchingPerson(String forWhat, Predicate<Person> pred) {
+	private static void roboCall(Person person){
+		System.out.println("Called "+person);
+	}
+	
+	private static void roboText(Person person){
+		System.out.println("Texted "+person);
+	}
+
+	/**
+	 * @param forWhat
+	 * @param predicate
+	 * @return
+	 */
+	private static int processMatchingPerson(String forWhat, Predicate<Person> pred, Block<Person> block) {
 		int returnInt	= 0;
 		for(Person person : listOfPerson){
 			//Test the person for the interface
 			if(pred.testPerson(person)){
 				returnInt++;
+				block.apply(person);
 			}
 		}
 		System.out.println("Number of persons are eligible for "+forWhat+ " : "+returnInt);
+		Common.createBreak();
 		return returnInt;
-
 	}
 
 	/**
@@ -53,7 +72,11 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrink(){
 		//For drinks : age > 22
-		callMatchingPerson("Drinking", (person) -> person.getAge()>22);
+		processMatchingPerson("Drinking", (person) -> person.getAge()>22, 
+				(person) -> {
+					roboCall(person);
+					roboText(person);
+				});
 
 
 	}
@@ -63,7 +86,10 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrive(){
 		//For driving : age> 18 and age < 49
-		callMatchingPerson("Driving", (person) -> person.getAge()>18 && person.getAge()<49);
+		processMatchingPerson("Driving", (person) -> person.getAge()>18 && person.getAge()<49,
+				(person) -> {
+					roboCall(person);
+				});
 	}
 
 	/**
@@ -71,24 +97,36 @@ public class RoboCall {
 	 */
 	public static void isLiving(){
 		//For living : age>0
-		callMatchingPerson("Living", (person) -> person.getAge()>0);
+		processMatchingPerson("Living", (person) -> person.getAge()>0,
+				(person) -> {
+					roboCall(person);
+				});
 	}
 
+	/**
+	 * 
+	 */
 	public static void needNotGotoSchool(){
 		//For noSchool: age < 4 or age > 43
-		callMatchingPerson("Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43);
+		processMatchingPerson("Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43,
+				(person) -> {
+					roboCall(person);
+				});
 	}
 
 	public static void canVote(){
 		//for vote : age > 21
-		callMatchingPerson("Voting", (person) -> person.getAge()>21);
+		processMatchingPerson("Voting", (person) -> person.getAge()>21,
+				(person) -> {
+					roboCall(person);
+				});
 	}
 
 	public static void isEligibleForSelectiveService(){
-		callMatchingPerson("Selective Service ",  (person) -> 
-				person.getAge()>=18 &&
-				person.getSex() == Sex.MALE &&
-				person.getAge()<= 25
-		);
+		processMatchingPerson("Selective Service ",  
+				(person) -> person.getAge()>=18 && person.getSex() == Sex.MALE && person.getAge()<= 25,
+				(person) -> {
+					roboCall(person);
+				});
 	}
 }
