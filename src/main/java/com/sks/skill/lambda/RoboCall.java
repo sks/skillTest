@@ -35,7 +35,31 @@ public class RoboCall {
 		needNotGotoSchool();
 		canVote();
 		isEligibleForSelectiveService();
+		
+		//Some stream usage.
+		streamsCustomUsages();
+		streamReduceOperation();
 
+	}
+
+	private static void streamReduceOperation() {
+		List<Integer> integerList	= Arrays.asList(1,2,3,4,5,6,7,8,9);
+		int sum = integerList.stream()
+				.parallel()
+				.reduce(0, (x,y)-> x+y);
+		System.out.println(sum);
+		
+		
+	}
+
+	private static void streamsCustomUsages() {
+		List<String> stringList	= Arrays.asList("A", "B", "C", "D", "E", "F", "F", "F", "A");
+		stringList
+		.stream()//Make a stream out of this
+		.distinct() //makes it unordered
+		.skip(1) //Skips one element
+		.forEach(s-> {System.out.println(s);});
+		
 	}
 
 	private static void roboCall(PhoneNumber phoneNumber){
@@ -72,24 +96,16 @@ public class RoboCall {
 		.stream()
 		.parallel()
 		.filter((person) -> person.getAge()>22)
-		.map((person) -> {
-			return person.getHomeNumber();
-		})
-		.forEach((person) -> {
-			roboCall(person);
-		});
+		.map((person) -> {return person.getHomeNumber();})
+		.forEach((person) -> {roboCall(person);});
 
 		//Text to mobile number
 		listOfPerson
-		.stream()
-		.parallel()
-		.filter((person) -> person.getAge()>22)
-		.map((person) -> {
-			return person.getMobileNumber();
-		})
-		.forEach((person) -> {
-			roboText(person);
-		});
+			.stream()
+			.parallel()
+			.filter((person) -> person.getAge()>22)
+			.map((person) -> {return person.getMobileNumber();})
+			.forEach((person) -> {roboText(person);});
 	}
 
 	/**
@@ -97,13 +113,10 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrive(){
 		//For driving : age> 18 and age < 49
-		listOfPerson.stream().filter(
-				(person) -> person.getAge()>18 && person.getAge()<49
-				)
-				.map((person) -> {
-					return person.getMobileNumber();
-				})
-				.forEach((person) -> roboCall(person));
+		listOfPerson.stream()
+		.filter((person) -> person.getAge()>18 && person.getAge()<49)
+		.map((person) -> {return person.getMobileNumber();})
+		.forEach((person) -> roboCall(person));
 	}
 
 	/**
@@ -146,4 +159,7 @@ public class RoboCall {
 		.map((person) -> {return person.getMobileNumber();})
 		.forEach((person) -> {roboCall(person);});
 	}
+	
+	
+	
 }
