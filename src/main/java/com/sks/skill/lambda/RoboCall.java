@@ -53,7 +53,7 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrink(){
 		//For drinks : age > 22
-		callMatchingPerson("Drinking", (Person person) -> person.getAge()>22);
+		callMatchingPerson("Drinking", (person) -> person.getAge()>22);
 
 
 	}
@@ -63,7 +63,7 @@ public class RoboCall {
 	 */
 	private static void isEligibleToDrive(){
 		//For driving : age> 18 and age < 49
-		callMatchingPerson("Driving", (Person person) -> person.getAge()>18 && person.getAge()<49);
+		callMatchingPerson("Driving", (person) -> person.getAge()>18 && person.getAge()<49);
 	}
 
 	/**
@@ -71,24 +71,24 @@ public class RoboCall {
 	 */
 	public static void isLiving(){
 		//For living : age>0
-		callMatchingPerson("Living", (Person person) -> person.getAge()>0);
+		callMatchingPerson("Living", (person) -> person.getAge()>0);
 	}
 
 	public static void needNotGotoSchool(){
 		//For noSchool: age < 4 or age > 43
-		callMatchingPerson("Not going to school ", (Person person) -> person.getAge()<4 || person.getAge()>43);
+		callMatchingPerson("Not going to school ", (person) -> person.getAge()<4 || person.getAge()>43);
 	}
 
 	public static void canVote(){
 		//for vote : age > 21
-		callMatchingPerson("Voting", (Person person) -> person.getAge()>21);
+		callMatchingPerson("Voting", (person) -> person.getAge()>21);
 	}
 
 	public static void isEligibleForSelectiveService(){
-		callMatchingPerson("Selective Service ",  (Person person) -> 
+		callMatchingPerson("Selective Service ",  (person) -> 
 				person.getAge()>=18 &&
 				person.getSex() == Sex.MALE &&
 				person.getAge()<= 25
-				);
+		);
 	}
 }
