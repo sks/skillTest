@@ -4,7 +4,7 @@ import com.sks.skill.basic.Common;
 
 /**
  * @author Sabith_ks
- * inspired by demo : http://www.tutorialspoint.com/design_pattern/design_pattern_tutorial.pdf
+ * Inspired by demo : http://www.tutorialspoint.com/design_pattern/design_pattern_tutorial.pdf
  */
 public class FactoryMethodDemo {
 
