@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Palindrome {
 	
-	public static void main(String[] args) throws IOException{
+	public static void main(StringChecks[] args) throws IOException{
 		String input = "-1";
 		Palindrome palindrome = new Palindrome();
 		Common.createBreak();

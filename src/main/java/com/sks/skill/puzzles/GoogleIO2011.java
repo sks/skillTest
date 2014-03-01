@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.regex.Pattern;
+
+import com.sks.skill.basic.Common;
 
 /**
  * @author Sabith_ks
@@ -23,13 +26,40 @@ public class GoogleIO2011 {
 	public static void main(String[] args){
 		GoogleIO2011 googleIO2011 = new GoogleIO2011();
 		
+		Common.createBreak();
 		googleIO2011.gasketOld();
 		
+		Common.createBreak();
 		googleIO2011.gasketNew();
 		
+		Common.createBreak();
 		googleIO2011.gasketNewCorrect();
 		
+		Common.createBreak();
 		googleIO2011.sizeMatters();
+		
+		Common.createBreak();
+		googleIO2011.matchGame();
+		
+	}
+	
+	/**
+	 *https://www.youtube.com/watch?v=wbp-3BJWsU8#t=697 
+	 */
+	private void matchGame() {
+		System.out.println("Match Game Starting ");
+		//Use at your own risk : sun wont last to see the o/p
+		//Pattern pattern	= Pattern.compile("(aa|aab?)+"); 
+		Pattern pattern	= Pattern.compile("(aab?)+");
+		//Catastrophic back-tracking
+		//2^n
+		int count	= 0;
+		for(String s = ""; s.length()<200; s+="a" ){
+			if(pattern.matcher(s).matches()){
+				count++;
+			}
+		}
+		System.out.println("Match game  = "+count);
 	}
 
 	/**

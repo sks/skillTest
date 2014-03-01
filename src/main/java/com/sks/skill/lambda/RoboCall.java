@@ -11,6 +11,7 @@ import java.util.List;
  * Compiler has to do the Type Inference while checking the lambda
  * This is not dynamic typing (Java is still Statically typed language)
  *  
+ *  http://download.java.net/jdk8/docs/api/index.html?java/util/stream/package-summary.html
  */
 public class RoboCall {
 

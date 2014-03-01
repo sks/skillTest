@@ -13,7 +13,7 @@ public class Power {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args){
+	public static void main(StringChecks[] args){
 		System.out.println(new Power().checkIfPowerOf2(8));
 	}
 
