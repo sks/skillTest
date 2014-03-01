@@ -10,14 +10,14 @@ import java.util.List;
  *https://www.youtube.com/watch?v=wbp-3BJWsU8#t=2084
  * @param <T>
  */
-public class Glommer<T> {
+public class Glommer<T> { //Get rid of the <T> parameter
 
 	public static void main(String[] args){
 		List<String> lists	= Arrays.asList("1", "2", "3");
 		System.out.println(new Glommer().glom(lists));
 	}
 
-	public String glom(Collection<?> objs){
+	public String glom(Collection<?> objs){ //Could have static
 		String result	= "";
 		for(Object o: objs){
 			result	+= o;
@@ -25,7 +25,7 @@ public class Glommer<T> {
 		return result;
 	}
 	
-	int glom(List<Integer> ints){
+	int glom(List<Integer> ints){ //Could have static
 		int resultInt	= 0;
 		for(int i : ints){
 			resultInt += i;
