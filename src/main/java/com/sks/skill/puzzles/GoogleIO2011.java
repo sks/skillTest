@@ -1,6 +1,11 @@
 package com.sks.skill.puzzles;
 
 import java.math.BigDecimal;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Sabith_ks
@@ -12,12 +17,41 @@ import java.math.BigDecimal;
  *
  */
 public class GoogleIO2011 {
+	
+	enum Sex{Male, Female};
 
 	public static void main(String[] args){
 		GoogleIO2011 googleIO2011 = new GoogleIO2011();
+		
 		googleIO2011.gasketOld();
+		
 		googleIO2011.gasketNew();
+		
 		googleIO2011.gasketNewCorrect();
+		
+		googleIO2011.sizeMatters();
+	}
+
+	/**
+	 * https://www.youtube.com/watch?v=wbp-3BJWsU8#t=697
+	 */
+	private void sizeMatters() {
+		System.out.println(size(new HashMap<Sex, Sex>())+"");
+		System.out.println(size(new EnumMap<Sex, Sex>(Sex.class))+"");
+		//Not seen in 1.8 atleast :|
+	}
+	
+	/**
+	 * @param map
+	 * @return
+	 */
+	private static int size(Map<Sex, Sex> map){
+		map.put(Sex.Male, Sex.Female);
+		map.put(Sex.Female, Sex.Male);
+		map.put(Sex.Male, Sex.Male);
+		map.put(Sex.Female, Sex.Female);
+		Set<Map.Entry<Sex, Sex>> set	= new HashSet<Map.Entry<Sex, Sex>>(map.entrySet());
+		return set.size();
 	}
 
 	/**
@@ -32,7 +66,6 @@ public class GoogleIO2011 {
 	}
 
 	/**
-	 * 
 	 * https://www.youtube.com/watch?v=wbp-3BJWsU8#t=247
 	 */
 	private void gasketNew() {
