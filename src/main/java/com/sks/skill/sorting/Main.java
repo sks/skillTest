@@ -1,5 +1,6 @@
 package com.sks.skill.sorting;
 
+import java.util.Random;
 import java.util.logging.Logger;
 
 import org.apache.commons.lang.time.StopWatch;
@@ -10,9 +11,14 @@ public class Main {
 
 	private static Logger logger 	= Logger.getLogger("MAIN");
 
-	private static final int totalArraySize	= 10000;
+	//Maximum array size load
+	private static final int totalArraySize	= 100000;
 
+	//Stop watch to keep track of time
 	private static StopWatch stopWatch	= new StopWatch();
+
+	//Generator for a something random numbers to sort
+	private static Random generator = new Random();
 
 	/**
 	 * @return
@@ -20,7 +26,7 @@ public class Main {
 	public static Integer[] getRandomArray(int totalSize){
 		Integer[] integers	= new Integer[totalSize];
 		for(int i=0; i<totalSize; i++){
-			integers[i] = (int) Math.floor(Math.random()*(totalSize*1000));
+			integers[i] = generator.nextInt(totalSize);
 		}
 		return integers;
 	}
