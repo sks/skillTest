@@ -19,6 +19,7 @@ public class BubbleSort implements SortingMechanism{
 			for(int nextElement = current;  nextElement<arrays.length;  nextElement++){
 				if(arrays[nextElement]< arrays[current]){
 					//if the next is less than the current , swap
+					//x = x+y - (y=x) , at the end we get that x =y & y=x 
 					arrays[current] = (arrays[nextElement]+arrays[current]) - (arrays[nextElement]=arrays[current]);
 				}
 			}

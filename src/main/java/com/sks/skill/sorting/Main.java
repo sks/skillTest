@@ -37,7 +37,7 @@ public class Main {
 			SortingMechanism sortingMechanism = SortingFactory.getSortingMechanism(sortingType);
 			Common.createBreak();
 			System.out.println("Sorting algorithm -> "+sortingType+" sort");
-			for(int arraySize=1; arraySize<= totalArraySize; arraySize= arraySize*10){
+			for(int arraySize=10; arraySize<= totalArraySize; arraySize= arraySize*10){
 				//Trying the sort using arraySize 
 				try{
 					//Stop Watch start
@@ -46,12 +46,16 @@ public class Main {
 					array  = sortingMechanism.sort(array);
 					//Stop watch end
 					stopWatch.stop();
-					Common.checkIfSorted(array);
+					//Validate if the array is sorted
+					if(! Common.checkIfSorted(array)){
+						throw new Exception("The sorting by "+sortingType+" did not give the expected sort");
+					}
 					System.out.println("Time : "+stopWatch.getTime()+"\tTotal Size "+arraySize);
-					stopWatch.reset();
 				}catch(Exception e){
 					logger.warning("Error while doing the sort using "+sortingType);
 					e.printStackTrace();
+				}finally{
+					stopWatch.reset();
 				}
 			}
 		}
