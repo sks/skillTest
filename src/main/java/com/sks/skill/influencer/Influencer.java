@@ -43,7 +43,7 @@ public class Influencer {
 		System.out.println(getInfluencer(followingMatrix));
 	}
 
-	private static int getInfluencer(Boolean[][] followingMatrix2) {
+	private static int getInfluencer(Boolean[][] followingMatrix) {
 		//create the namespace
 		boolean isPossibleInfluencer	;
 		//cache that store the candidates that are not a influencer , so that we dont check them again.
