@@ -66,7 +66,7 @@ public class Influencer {
 				if(	followingMatrix[influencer][followedBy] || //He should be following himself only.
 					! followingMatrix[followedBy][influencer]//The rest of the users should be following him
 						){
-					//the user is following influencer. so not a influencer
+					//the user is following influencer. so not a influencer or the user is not followed by followedBy
 					isPossibleInfluencer	= false;
 					break;
 				}else{
