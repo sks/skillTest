@@ -1,12 +1,11 @@
 package com.sks.skill.sorting.merge;
 
-import java.util.Arrays;
-
 import com.sks.skill.sorting.SortingMechanism;
 
 /**
  * @author Sabith_ks
  * http://en.wikipedia.org/wiki/Merge_sort
+ * http://www.vogella.com/tutorials/JavaAlgorithmsMergesort/article.html
  * Best : O(n log n) comparison-based sorting algorithm
  */
 public class MergeSort implements SortingMechanism {
@@ -62,18 +61,4 @@ public class MergeSort implements SortingMechanism {
 			i++;
 		}
 	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args){
-		try {
-			Integer[] array = new MergeSort().sort(new Integer[]{9, 4,32,3,4,2,82,23,1,4,5,4,32,45, 34});
-			System.out.println(Arrays.asList(array));
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
 }

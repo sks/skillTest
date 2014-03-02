@@ -1,5 +1,5 @@
 package com.sks.skill.sorting;
 
 public enum SortingType {
-	BUBBLE, INSERTION, MERGE;
+	BUBBLE, INSERTION, MERGE, QUICK;
 }

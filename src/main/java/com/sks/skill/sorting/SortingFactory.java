@@ -2,6 +2,7 @@ package com.sks.skill.sorting;
 
 import com.sks.skill.sorting.cocktail.BubbleSort;
 import com.sks.skill.sorting.merge.MergeSort;
+import com.sks.skill.sorting.quick.QuickSort;
 import com.sks.skill.sorting.simple.InsertionSort;
 
 /**
@@ -22,6 +23,8 @@ public class SortingFactory {
 			return new InsertionSort();
 		case MERGE:
 			return new MergeSort();
+		case QUICK:
+			return new QuickSort();
 		default:
 			return null;
 		}
