@@ -79,8 +79,9 @@ public class Heap<T extends Comparable<T>> {
 	 * adds all the items and then does the siftup
 	 */
 	public void addAll(List<T> items){
-		this.internalItems.addAll(items);
-		siftUp();
+		for(T t: items){
+			this.add(t);
+		}
 	}
 
 	/**
@@ -113,6 +114,10 @@ public class Heap<T extends Comparable<T>> {
 	public String toString(){
 		return this.internalItems.toString();
 	}
-	
+
+	public T get(int index) {
+		return this.internalItems.get(index);
+	}
+
 
 }
