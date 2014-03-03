@@ -11,7 +11,10 @@ public class Kadane {
 		System.out.println(new Kadane().maxSumOfContinuousSubsequence(new Integer[]{-1, 2, 0, -32, -6, -7, -1}, true));
 	}
 
-	private int maxSumOfContinuousSubsequence(Integer[] integers, boolean allowNegative) {
+	public int maxSumOfContinuousSubsequence(Integer[] integers, boolean allowNegative) {
+		if(integers==null){
+			return 0;
+		}
 		int maxEndingTillNow	= (allowNegative) ? integers[0] : 0,
 				maxSoFar	= maxEndingTillNow;
 		for(int number: integers){
