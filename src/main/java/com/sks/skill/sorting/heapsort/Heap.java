@@ -56,6 +56,7 @@ public class Heap<T extends Comparable<T>> {
 				//Since the parent is bigger than the greatest of child, break
 				break;
 			}
+			//The parent is smaller than the child : contradictory to max-heap property
 			value	= internalItems.get(k);
 			internalItems.set(k, internalItems.get(maxChild));
 			internalItems.set(maxChild, value);
@@ -105,9 +106,13 @@ public class Heap<T extends Comparable<T>> {
 		return this.internalItems.size();
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
 	@Override
 	public String toString(){
 		return this.internalItems.toString();
 	}
+	
 
 }
