@@ -10,7 +10,10 @@ public class Factors {
 	 * @param number
 	 * @return
 	 */
-	public static List<Integer> getFactors(int number){
+	public List<Integer> getFactors(int number){
+		if(number==0){
+			throw new IllegalArgumentException("Zero has infinite factors");
+		}
 		List<Integer> returnList	= new ArrayList<Integer>();
 		returnList.addAll(Arrays.asList(1, number, -1, -1*number));
 		int factor	= 2;
@@ -29,16 +32,19 @@ public class Factors {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args){
-		System.out.println(Factors.getFactors(32));
-		System.out.println(Factors.getPrimeFactor(40));
+	public void main(String[] args){
+		System.out.println(new Factors().getFactors(32));
+		System.out.println(new Factors().getPrimeFactor(40));
 	}
 
 	/**
 	 * @param number
 	 * @return list of prime factors
 	 */
-	public static List<Integer> getPrimeFactor(int number){
+	public List<Integer> getPrimeFactor(int number){
+		if(number==0){
+			throw new IllegalArgumentException("Zero has infinite factors");
+		}
 		List<Integer> factors = new ArrayList<Integer>();
 		for (int i = 2; i <= number / i; i++) {
 			while (number % i == 0) {

@@ -10,10 +10,15 @@ import java.util.Arrays;
 public class AllEvensToLeftandOddsToRight {
 	
 	public static void main(String[] args){
-		new AllEvensToLeftandOddsToRight().sort(new Integer[]{1, 12,3, 34,54,6,3,12,23});
+		Integer[] output = new AllEvensToLeftandOddsToRight().sort(new Integer[]{1, 12,3, 34,54,6,3,12,23});
+		System.out.println(Arrays.asList(output));
 	}
 
-	private Integer[] sort(Integer[] integers) {
+	public Integer[] sort(Integer[] integers) {
+		if(integers==null){
+			throw new IllegalArgumentException("The input should not be null");
+		}
+		
 		int i =0,
 			j = integers.length-1;
 		while(i<j){
@@ -31,7 +36,6 @@ public class AllEvensToLeftandOddsToRight {
 				integers[i] = integers[j]+integers[i] - (integers[j]=integers[i]);
 			}
 		}
-		System.out.println(Arrays.asList(integers));
 		return integers;
 	}
 }
