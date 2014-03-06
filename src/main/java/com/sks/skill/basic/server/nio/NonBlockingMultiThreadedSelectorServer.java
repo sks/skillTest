@@ -15,6 +15,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.spi.LoggerFactory;
+
 import com.sks.skill.basic.server.oio.Util;
 
 /**
@@ -22,6 +25,8 @@ import com.sks.skill.basic.server.oio.Util;
  *
  */
 public class NonBlockingMultiThreadedSelectorServer {
+	
+	static Logger logger	= Logger.getLogger(NonBlockingMultiThreadedSelectorServer.class);
 
 	/**
 	 *  Using concurrent hash map as we have multiple threads
@@ -61,6 +66,7 @@ public class NonBlockingMultiThreadedSelectorServer {
 			while((writePendingSocketChannel = channelsToWrite.poll()) !=null) {
 				//write the changes outside the thread
 				writePendingSocketChannel.register(selector, SelectionKey.OP_WRITE);
+				logger.info("Making the socket "+selector+" writable for pending writes");
 			}
 			//Key select
 			for(Iterator<SelectionKey> iterator = selector.selectedKeys().iterator(); iterator.hasNext();){
@@ -119,7 +125,7 @@ public class NonBlockingMultiThreadedSelectorServer {
 			if(read == -1){
 				//if the socket is closed, remove it from the set
 				pendingSocketWrite.remove(sChannel);
-				//System.out.println("Connection  Closed from "+sChannel+" on thread "+Thread.currentThread().getId()+". Total concurrent connection "+pendingSocketWrite.size());;
+				logger.info("Connection  Closed from "+sChannel+" on thread "+Thread.currentThread().getId()+". Total concurrent connection "+pendingSocketWrite.size());;
 				return;
 			}
 			//Transmogify   will be done by a different thread
