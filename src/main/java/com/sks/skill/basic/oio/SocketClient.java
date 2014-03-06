@@ -6,12 +6,13 @@ import java.net.UnknownHostException;
 
 /**
  * @author Sabith_ks
+ *  we are using the cached Pool
  *
  */
 public class SocketClient {
 
 
-	public static final int MAX_COUNT = 400;
+	public static final int MAX_COUNT = 3000;
 
 	/**
 	 * Default port 
@@ -26,6 +27,7 @@ public class SocketClient {
 	public static void main(String[] args) throws UnknownHostException, IOException{
 		for(int count=0; count<MAX_COUNT; count++){
 			new Socket("localhost", DEFAULT_PORT);
+			System.out.println(count);
 
 		}
 	}
