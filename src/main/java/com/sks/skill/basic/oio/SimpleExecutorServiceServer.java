@@ -18,9 +18,10 @@ public class SimpleExecutorServiceServer {
 				60L, 
 				TimeUnit.SECONDS, 
 				new SynchronousQueue<Runnable>(), 
-				new ThreadPoolExecutor.DiscardPolicy());
+				new ThreadPoolExecutor.CallerRunsPolicy()); //new ThreadPoolExecutor.DiscardPolicy());
 		while(true){
 			Socket socket	= serverSocket.accept();
+			//lambda notation for a new thread
 			pool.submit(() -> Util.processSocketRequest(socket));
 		}
 	}

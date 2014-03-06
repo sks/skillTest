@@ -23,7 +23,7 @@ public class Util {
 	 * @param socket
 	 */
 	public static void processSocketRequest(Socket socket) {
-		System.out.println("Connection from "+socket);
+		System.out.println("Connection from "+socket+" on thread "+Thread.currentThread().getId());
 		//http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
 		
 		try(
