@@ -1,8 +1,6 @@
 package com.sks.skill.basic.oio;
 
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -25,17 +23,9 @@ public class SingleThreadServer {
 			//waits for a connnection to arrive,
 			//may or not return null
 			Socket socket	= serverSocket.accept();
-			//http://docs.oracle.com/javase/tutorial/essential/exceptions/tryResourceClose.html
-			try(
-					InputStream	in	= socket.getInputStream();
-					OutputStream output	= socket.getOutputStream();
-					){
-				int data;
-				while((data = in.read())!=-1){
-					data	= Util.transmogify(data);
-					output.write(data);
-				}
-			}
+			Util.processSocketRequest(socket);
 		}
 	}
+
+	
 }
