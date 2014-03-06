@@ -18,7 +18,7 @@ public class SingleThreadServer {
 
 
 	public static void main(String[] args) throws IOException{
-		ServerSocket	serverSocket	= new ServerSocket(8080);
+		ServerSocket	serverSocket	= new ServerSocket(SocketClient.DEFAULT_PORT);
 		while(true){
 			//waits for a connnection to arrive,
 			//may or not return null
