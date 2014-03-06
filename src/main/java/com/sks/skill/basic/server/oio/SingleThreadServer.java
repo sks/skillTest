@@ -1,4 +1,4 @@
-package com.sks.skill.basic.oio;
+package com.sks.skill.basic.server.oio;
 
 import java.io.IOException;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package com.sks.skill.basic.oio;
+package com.sks.skill.basic.server.oio;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -25,7 +25,7 @@ public class SocketClient {
 	 * @throws UnknownHostException 
 	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException{
+	public static void main(String[] args) throws Exception{
 		for(int count=0; count<MAX_COUNT; count++){
 			new Socket("localhost", DEFAULT_PORT);
 			System.out.println("Client connection "+count);
