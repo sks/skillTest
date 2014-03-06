@@ -18,6 +18,16 @@ public class QuickSort implements SortingMechanism {
 
 	private Integer[] array;
 
+	public static void main(String[] args){
+		try {
+			new QuickSort().sort(new Integer[]{2,34,5,6,3,2,124,345,45});
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 	@Override
 	public Integer[] sort(Integer[] array) throws Exception {
 		this.array	= array;

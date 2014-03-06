@@ -17,6 +17,12 @@ public class BinarySearch implements SearchMechanism{
 		return binarySearch(0, array.length, value);
 	}
 
+	/**
+	 * @param low
+	 * @param high
+	 * @param value
+	 * @return the index in case the value is present, other wise , -1
+	 */
 	private int binarySearch(int low, int high,int value) {
 		int middle	;
 		if(low <= high){

@@ -28,7 +28,7 @@ public class Palindrome {
 		
 	}
 
-	private boolean isPalindrome(String string) {
+	public boolean isPalindrome(String string) {
 		boolean isPalindrome	= true;
 		for(int i=0; i<string.length()/2 ; i++ ){
 			char firstLetter	= string.charAt(i);

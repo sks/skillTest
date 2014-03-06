@@ -9,6 +9,6 @@ package com.sks.skill.basic.garbageCollection;
 public class OutOfMemory {
 
 	public static void main(String[] args){
-		char[] character	=	new char[(int) 99999999999999999L];
+		char[] character	=	new char[2000000000];
 	}
 }
