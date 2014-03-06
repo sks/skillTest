@@ -23,12 +23,12 @@ public class SocketClient {
 	 * @param args
 	 * @throws IOException 
 	 * @throws UnknownHostException 
+	 * @throws InterruptedException 
 	 */
-	public static void main(String[] args) throws UnknownHostException, IOException{
+	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException{
 		for(int count=0; count<MAX_COUNT; count++){
 			new Socket("localhost", DEFAULT_PORT);
-			System.out.println(count);
-
+			System.out.println("Client connection "+count);
 		}
 	}
 }
