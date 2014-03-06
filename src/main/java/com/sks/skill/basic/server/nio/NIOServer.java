@@ -15,6 +15,10 @@ import com.sks.skill.basic.server.oio.Util;
  */
 public class NIOServer {
 
+	/**
+	 * @param args
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
 		//You open a server socket channel
 		ServerSocketChannel	serverSocketChannel	= ServerSocketChannel.open();

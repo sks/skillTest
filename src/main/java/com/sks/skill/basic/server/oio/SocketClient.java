@@ -6,7 +6,6 @@ import java.net.UnknownHostException;
 
 /**
  * @author Sabith_ks
- *  we are using the cached Pool
  *
  */
 public class SocketClient {
@@ -30,6 +29,6 @@ public class SocketClient {
 			new Socket("localhost", DEFAULT_PORT);
 			System.out.println("Client connection "+count);
 		}
-		Thread.sleep(1000000);
+		Thread.sleep(10000);
 	}
 }
