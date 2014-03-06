@@ -50,7 +50,7 @@ public class NonBlockingSingleThreadedPollingServer {
 				System.out.println("New Connection from "+socketChannel+" on thread "+Thread.currentThread().getId()+". Total concurrent connection "+sockets.size());
 			}
 			
-			//iterate through the socket 
+			//iterate through the open sockets
 			//Using foreach loop so that we can remove the object from the set
 			for(Iterator<SocketChannel> iterator = sockets.iterator(); iterator.hasNext(); ){
 				SocketChannel sChannel	= iterator.next();
