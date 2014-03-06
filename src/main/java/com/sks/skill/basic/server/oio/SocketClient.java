@@ -30,5 +30,6 @@ public class SocketClient {
 			new Socket("localhost", DEFAULT_PORT);
 			System.out.println("Client connection "+count);
 		}
+		Thread.sleep(1000000);
 	}
 }
