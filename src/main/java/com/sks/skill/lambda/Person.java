@@ -77,9 +77,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [name=" + name + ", email=" + email + ", age=" + age
-				+ ", sex=" + sex + ", homeNumber=" + homeNumber
-				+ ", mobileNumber=" + mobileNumber + "]";
+		return "Person [name=" + name + "]";
 	}
 
 	
