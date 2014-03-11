@@ -2,9 +2,11 @@ package com.sks.skill.designPattern.singleton;
 
 /**
  * @author Sabith_ks
+ * example : java.lang.Runtime
+ *
  *
  */
-public class SingleObject {
+public final class SingleObject {
 	
 	/**
 	 * Private instance of self  
